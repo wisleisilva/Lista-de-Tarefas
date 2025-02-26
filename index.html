@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Tarefas</h1>
+        <div class="task-list-container">
+            <ul id="taskList"></ul>
+        </div>
+        <div class="input-container">
+            <input type="text" id="taskInput" placeholder="Digite uma nova tarefa">
+            <button id="addTaskBtn">Inserir</button>
+        </div>
+        <div class="button-container">
+            <input type="file" id="fileInput" accept=".txt" style="display: none;">
+            <button id="importBtn">Importar Tarefas</button>
+            <button id="generateReportBtn">Gerar Relatório Mensal</button>
+            <button id="deleteAllBtn">Excluir Todas as Tarefas</button>
+        </div>
+        <div class="print-container">
+            <button id="printReportBtn" style="display: none;">Imprimir Relatório</button>
+        </div>
+        <div id="report"></div> <!-- Área para exibir o relatório -->
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
