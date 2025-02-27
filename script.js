@@ -102,13 +102,24 @@ function generateMonthlyReport() {
         const monthYear = `${date.getMonth() + 1}/${date.getFullYear()}`; // Formato: MM/AAAA
 
         if (!report[monthYear]) {
-            report[monthYear] = { total: 0, completed: 0 };
+            report[monthYear] = {
+                total: 0,
+                completed: 0,
+                tasks: [] // Armazena as tarefas do mês
+            };
         }
 
         report[monthYear].total += 1; // Incrementa o total de tarefas
         if (task.completed) {
             report[monthYear].completed += 1; // Incrementa o total de tarefas concluídas
         }
+
+        // Adiciona a tarefa ao array de tarefas do mês
+        report[monthYear].tasks.push({
+            text: task.text,
+            date: task.date,
+            completed: task.completed
+        });
     });
 
     // Exibe o relatório
@@ -119,10 +130,12 @@ function generateMonthlyReport() {
         const reportItem = document.createElement('div');
         reportItem.classList.add('report-item');
 
+        // Título do mês/ano
         const title = document.createElement('h3');
         title.textContent = `Mês: ${monthYear}`;
         reportItem.appendChild(title);
 
+        // Total de tarefas e concluídas
         const totalTasks = document.createElement('p');
         totalTasks.textContent = `Total de tarefas: ${data.total}`;
         reportItem.appendChild(totalTasks);
@@ -131,6 +144,17 @@ function generateMonthlyReport() {
         completedTasks.textContent = `Tarefas concluídas: ${data.completed}`;
         reportItem.appendChild(completedTasks);
 
+        // Lista de tarefas do mês
+        const taskList = document.createElement('ul');
+        taskList.classList.add('report-task-list');
+
+        data.tasks.forEach(task => {
+            const taskItem = document.createElement('li');
+            taskItem.textContent = `${task.text} - ${new Date(task.date).toLocaleDateString('pt-BR')} ${task.completed ? '(Concluída)' : ''}`;
+            taskList.appendChild(taskItem);
+        });
+
+        reportItem.appendChild(taskList);
         reportContainer.appendChild(reportItem);
     }
 
@@ -151,6 +175,8 @@ function printReport() {
                     .report-item { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
                     .report-item h3 { margin: 0 0 10px 0; font-size: 1.2em; color: #333; }
                     .report-item p { margin: 0; color: #666; }
+                    .report-task-list { margin-top: 10px; padding-left: 20px; list-style-type: disc; }
+                    .report-task-list li { margin-bottom: 5px; font-size: 0.9em; color: #444; }
                 </style>
             </head>
             <body>

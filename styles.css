@@ -55,7 +55,8 @@ li {
 
 li.completed {
     text-decoration: line-through;
-    color: #888;
+    text-decoration-color: red; /* Cor da linha riscada */
+    color: #888; /* Cor do texto */
 }
 
 .task-date {
@@ -204,6 +205,18 @@ button.deleteBtn:hover {
 .report-item p {
     margin: 0;
     color: #666;
+}
+
+.report-task-list {
+    margin-top: 10px;
+    padding-left: 20px;
+    list-style-type: disc; /* Marcadores para os itens da lista */
+}
+
+.report-task-list li {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #444;
 }
 
 /* Ajustes para telas menores (dispositivos móveis) */
